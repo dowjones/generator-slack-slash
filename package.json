@@ -1,0 +1,34 @@
+{
+  "name": "generator-slack-slash",
+  "version": "1.0.0",
+  "description": "Yeoman generator for slack-slash app",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "adamgruber/generator-slack-slash",
+  "author": {
+    "name": "Adam Gruber",
+    "email": "",
+    "url": "https://github.com/adamgruber"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "slack",
+    "slash command"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "lodash": "^3.10.0",
+    "yeoman-generator": "^0.19.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "slack-slash": "*"
+  }
+}

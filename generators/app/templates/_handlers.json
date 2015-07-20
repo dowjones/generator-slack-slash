@@ -1,0 +1,7 @@
+[<% for(var i=0; i<handlers.length; i++) {%>
+  {
+    "command": "<%= handlers[i].command%>",
+    "pkg": "<%= handlers[i].pkgName%>",
+    "tokenVar": "<%= handlers[i].token%>"
+  }<% if (i !== handlers.length - 1) {%>,<% } %>
+<% } %>]
