@@ -10,7 +10,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     this.log(yosay(
-      'Welcome to the awesome ' + chalk.red('SlackSlash') + ' generator!'
+      'Welcome to the awesome ' + chalk.red('slack-slash') + ' app generator!'
     ));
 
     this.log('This generator will create a new ' + chalk.red('slack-slash') + ' app.');
