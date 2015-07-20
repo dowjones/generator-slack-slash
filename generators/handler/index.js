@@ -5,6 +5,7 @@ var yosay = require('yosay');
 
 module.exports = yeoman.generators.Base.extend({
   initializing: function () {
+    this.log('handler gen');
     this.ssSourceRoot = '../../../node_modules/slack-slash';
   },
 
