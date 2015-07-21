@@ -65,6 +65,10 @@ describe('slack-slash:app options', function () {
     assert.fileContent('package.json', '"name": "slack-slash-test"');
   });
 
+  it('updates bin/www with correct data', function () {
+    assert.fileContent('bin/www', 'var debug = require(\'debug\')(\'slack-slash-test\');');
+  });
+
   it('updates handlers.json with correct data', function () {
     assert.fileContent('handlers.json', /\s*{\n\s*"command"\s*:\s*"h1",\n\s*"pkg"\s*:\s*"handler-one",\n\s*"tokenVar"\s*:\s*"h1Token"\n\s*},/);
     assert.fileContent('handlers.json', /\s*{\n\s*"command"\s*:\s*"h2",\n\s*"pkg"\s*:\s*"handler-two",\n\s*"tokenVar"\s*:\s*"h2Token"\n\s*}/);
