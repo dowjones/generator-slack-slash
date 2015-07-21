@@ -29,7 +29,7 @@ module.exports = yeoman.generators.Base.extend({
     {
       type: 'input',
       name: 'handlerDescription',
-      message: 'Give a short description for your handler.'
+      message: 'Give a short description for your handler:'
     }];
 
     this.prompt(prompts, function (props) {

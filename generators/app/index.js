@@ -19,7 +19,7 @@ module.exports = yeoman.generators.Base.extend({
     var prompts = [{
       type: 'input',
       name: 'appName',
-      message: 'Name your app.',
+      message: 'Name your app:',
       default: 'slack-slash'
     },    
     {
@@ -31,7 +31,7 @@ module.exports = yeoman.generators.Base.extend({
     {
       type: 'input',
       name: 'handlers',
-      message: 'List handlers to use. (comma separated)',
+      message: 'List handlers to use (comma separated):',
       validate: function (str) { return str.trim() !== ''; },
       filter: function (str) { 
         return str.split(',').map(function (str) { return str.trim(); }); },
@@ -59,7 +59,7 @@ module.exports = yeoman.generators.Base.extend({
         var tokenVarPrompt = {
           type: 'input',
           name: handler + '_token',
-          message: 'Environment variable for your slack token?',
+          message: 'Environment variable for your slack token:',
           default: pkgToTokenVar(handler)
         };
         prompts.push(commandPrompt, tokenVarPrompt);
