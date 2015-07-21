@@ -4,6 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var _ = require('lodash');
 var path = require('path');
+var helpers = require('../../helpers');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -32,9 +33,8 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       name: 'handlers',
       message: 'List handlers to use (comma separated):',
-      validate: function (str) { return str.trim() !== ''; },
-      filter: function (str) { 
-        return str.split(',').map(function (str) { return str.trim(); }); },
+      validate: helpers.emptyStrCheck,
+      filter: helpers.filterHandlers,
       when: function (answers) { return answers.initialHandlers; }
     },
     ];
@@ -54,13 +54,14 @@ module.exports = yeoman.generators.Base.extend({
           type: 'input',
           name: handler + '_command',
           message: 'What is the /:command for ' + handler + '?',
+          filter: helpers.cleanSlashCmd,
           default: handler
         };
         var tokenVarPrompt = {
           type: 'input',
           name: handler + '_token',
           message: 'Environment variable for your slack token:',
-          default: pkgToTokenVar(handler)
+          default: helpers.pkgToTokenVar(handler)
         };
         prompts.push(commandPrompt, tokenVarPrompt);
       });
@@ -69,10 +70,6 @@ module.exports = yeoman.generators.Base.extend({
         _.assign(this.props, props);
         done();
       }.bind(this));
-    }
-
-    function pkgToTokenVar(pkgName) {
-      return pkgName.replace(/-/g, '_') + '_token';
     }
   },
 
@@ -105,7 +102,7 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('www'),
         this.destinationPath('bin', '/www'),
-        {appName: this.props.appName}
+        this.props
       );
 
       this.fs.copy(
@@ -118,13 +115,13 @@ module.exports = yeoman.generators.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
-        {appName: this.props.appName}
+        this.props
       );
 
       this.fs.copyTpl(
         this.templatePath('_handlers.json'),
         this.destinationPath('handlers.json'),
-        {handlers: this.props.h}
+        this.props
       );
 
       this.fs.copy(

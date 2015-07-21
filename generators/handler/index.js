@@ -2,6 +2,7 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
+var helpers = require('../../helpers');
 
 module.exports = yeoman.generators.Base.extend({
   prompting: function () {
@@ -18,7 +19,8 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       name: 'command',
       message: 'What\'s the slash command for your handler? (/:command)',
-      validate: function (str) { return str.trim() !== ''; }
+      validate: helpers.emptyStrCheck,
+      filter: helpers.cleanSlashCmd
     },
     {
       type: 'input',
@@ -39,18 +41,10 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   modifyProps: function () {
-    function initFirst(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1, str.length);
-    }
-
-    function pkgToTokenVar(pkgName) {
-      return pkgName.replace(/-/g, '_') + '_token';
-    }
-
     this.props.slashCmd = 'slash-' + this.props.command;
-    this.props.moduleName = 'slash' + initFirst(this.props.command);
-    this.props.className = 'Slash' + initFirst(this.props.command);
-    this.props.handlerTokenName = pkgToTokenVar(this.props.handlerName);
+    this.props.moduleName = 'slash' + helpers.initFirst(this.props.command);
+    this.props.className = 'Slash' + helpers.initFirst(this.props.command);
+    this.props.handlerTokenName = helpers.pkgToTokenVar(this.props.handlerName);
   },
 
   paths: function () {
