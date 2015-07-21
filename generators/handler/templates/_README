@@ -34,7 +34,7 @@ options:  @(Object) options to pass to the handler
 // handlers.json
 [
   {
-    "command": "<%= command %>"
+    "command": "<%= command %>",
     "pkg": "<%= handlerName %>",
     "tokenVar": "<%= handlerTokenName %>",
     "options": {...}
