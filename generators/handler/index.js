@@ -4,52 +4,121 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 
 module.exports = yeoman.generators.Base.extend({
-  initializing: function () {
-    this.log('handler gen');
-    this.ssSourceRoot = '../../../node_modules/slack-slash';
-  },
-
   prompting: function () {
     var done = this.async();
 
-    // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the stunning ' + chalk.red('SlackSlash') + ' generator!'
+      'Welcome to the awesome ' + chalk.red('slack-slash') + ' handler generator!'
     ));
+
+    this.log('This generator will create a new ' + chalk.red('slack-slash') + ' handler.');
+    this.log('To create a new slack-slash app instead, run ' + chalk.yellow('yo slack-slash') + '.\n');
 
     var prompts = [{
       type: 'input',
-      name: 'appName',
-      message: 'Give your app a great name.',
-      default: 'slack-slash'
+      name: 'command',
+      message: 'What\'s the slash command for your handler? (/:command)',
+      validate: function (str) { return str.trim() !== ''; }
+    },
+    {
+      type: 'input',
+      name: 'handlerName',
+      message: 'What\s the name of your handler?',
+      default: function (answers) { return 'slack-slash-' + answers.command; }
+    },
+    {
+      type: 'input',
+      name: 'handlerDescription',
+      message: 'Give a short description for your handler.'
     }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
-      // To access props later use this.props.someOption;
-
       done();
     }.bind(this));
+  },
+
+  modifyProps: function () {
+    function initFirst(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1, str.length);
+    }
+
+    function pkgToTokenVar(pkgName) {
+      return pkgName.replace(/-/g, '_') + '_token';
+    }
+
+    this.props.slashCmd = 'slash-' + this.props.command;
+    this.props.moduleName = 'slash' + initFirst(this.props.command);
+    this.props.className = 'Slash' + initFirst(this.props.command);
+    this.props.handlerTokenName = pkgToTokenVar(this.props.handlerName);
+  },
+
+  paths: function () {
+    // Save handler into directory with handler name
+    this.destinationRoot(this.props.handlerName + '/');
   },
 
   writing: {
     app: function () {
       this.fs.copyTpl(
+        this.templatePath('_index.js'),
+        this.destinationPath('index.js'),
+        this.props
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('_handler.js'),
+        this.destinationPath('lib/' + this.props.slashCmd + '.js'),
+        this.props
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('_handler-test.js'),
+        this.destinationPath('test/' + this.props.slashCmd + '-test.js'),
+        this.props
+      );
+
+      this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'),
-        {pkgName: this.props.appName}
+        this.props
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('_README'),
+        this.destinationPath('README.md'),
+        this.props
       );
     },
 
     projectfiles: function () {
       this.fs.copy(
+        this.templatePath('gulpfile.js'),
+        this.destinationPath('gulpfile.js')
+      );
+
+      this.fs.copy(
+        this.templatePath('LICENSE'),
+        this.destinationPath('LICENSE')
+      );
+
+      this.fs.copy(
         this.templatePath('jshintrc'),
         this.destinationPath('.jshintrc')
+      );
+
+      this.fs.copy(
+        this.templatePath('gitignore'),
+        this.destinationPath('.gitignore')
       );
     }
   },
 
   install: function () {
-    this.installNpm();
+    this.npmInstall();
+  },
+
+  end: function () {
+    this.log('\nCongratulations! ' + chalk.red(this.props.handlerName) + ' is now ready.\n');
   }
 });

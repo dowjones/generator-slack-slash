@@ -1,0 +1,24 @@
+{
+  "name": "<%= handlerName %>",
+  "version": "1.0.0",
+  "description": "<%= handlerDescription %>",
+  "keywords": [
+    "slack",
+    "slack-slash",
+    "slash command"
+  ],
+  "main": "index",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-istanbul": "^0.9.0",
+    "gulp-mocha": "^2.0.1",
+    "istanbul": "^0.3.14",
+    "mochawesome": "^1.2.0",
+    "should": "^6.0.3",
+    "sinon": "^1.14.1"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "license": "MIT"
+}

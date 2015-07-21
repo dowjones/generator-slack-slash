@@ -1,0 +1,49 @@
+#<%= handlerName %>
+
+Command handler for [slack-slash][ss]. <%= handlerDescription %>
+
+##Usage
+
+Once installed and configured you can type `/<%= command %>` into Slack and it will respond like this:
+
+![Slack Response](<%= handlerName %>-response.png)
+
+##Installation
+
+1. Configure slash-command integration in Slack. [More info](https://api.slack.com/slash-commands)
+2. Clone and install [slack-slash][ss]
+3. Run `npm install <%= handlerName %> --save` inside your [slack-slash][ss] directory
+4. Configure handler in `handlers.json`
+5. Set the environment variable for your Slack token
+
+##Configuration
+
+In order to use <%= handlerName %> as part of [slack-slash][ss], you need to add an entry for it inside `handlers.json`.
+
+####Config Object Properties
+
+```
+command:  @{String} slash command typed into slack, ie. '/weather'
+pkg:      @{String} module name to require
+tokenVar: @{String} environment variable where slack token for slash command is stored
+options:  @(Object) options to pass to the handler
+```
+
+**Example**
+```js
+// handlers.json
+[
+  {
+    "command": "<%= command %>"
+    "pkg": "<%= handlerName %>",
+    "tokenVar": "<%= handlerTokenName %>",
+    "options": {...}
+  }
+]
+```
+
+## License
+
+[MIT](/LICENSE)
+
+[ss]: https://github.com/dowjones/slack-slash
