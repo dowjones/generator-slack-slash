@@ -1,5 +1,4 @@
 /*global describe, before, it */
-'use strict';
 
 var path = require('path');
 var assert = require('yeoman-generator').assert;
@@ -31,10 +30,12 @@ function checkCreatedFiles() {
 describe('slack-slash:app base', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
-      .withOptions({ skipInstall: true })
+      .withOptions({
+        skipInstall: true
+      })
       .on('end', done);
   });
-  
+
   checkCreatedFiles();
 
   it('updates package.json with correct data', function () {
@@ -46,13 +47,15 @@ describe('slack-slash:app base', function () {
 describe('slack-slash:app options', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/app'))
-      .withOptions({ skipInstall: true })
+      .withOptions({
+        skipInstall: true
+      })
       .withPrompts({
         appName: 'slack-slash-test',
         initialHandlers: true,
         handlers: ['handler-one', 'handler-two'],
         'handler-one_command': 'h1',
-        'handler-one_token':'h1Token',
+        'handler-one_token': 'h1Token',
         'handler-two_command': 'h2',
         'handler-two_token': 'h2Token'
       })

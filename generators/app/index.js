@@ -1,4 +1,3 @@
-'use strict';
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
@@ -22,7 +21,7 @@ module.exports = yeoman.generators.Base.extend({
       name: 'appName',
       message: 'Name your app:',
       default: 'slack-slash'
-    },    
+    },
     {
       type: 'confirm',
       name: 'initialHandlers',
@@ -33,11 +32,12 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       name: 'handlers',
       message: 'List handlers to use (comma separated):',
-      validate: helpers.emptyStrCheck,
+      validate: helpers.stringNotEmpty,
       filter: helpers.filterHandlers,
-      when: function (answers) { return answers.initialHandlers; }
-    },
-    ];
+      when: function (answers) {
+        return answers.initialHandlers;
+      }
+    }];
 
     this.prompt(prompts, function (props) {
       this.props = props;

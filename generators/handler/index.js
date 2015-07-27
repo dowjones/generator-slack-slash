@@ -1,4 +1,3 @@
-'use strict';
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
@@ -19,14 +18,16 @@ module.exports = yeoman.generators.Base.extend({
       type: 'input',
       name: 'command',
       message: 'What\'s the slash command for your handler? (/:command)',
-      validate: helpers.emptyStrCheck,
+      validate: helpers.stringNotEmpty,
       filter: helpers.cleanSlashCmd
     },
     {
       type: 'input',
       name: 'handlerName',
       message: 'What\s the name of your handler?',
-      default: function (answers) { return 'slack-slash-' + answers.command; }
+      default: function (answers) {
+        return 'slack-slash-' + answers.command;
+      }
     },
     {
       type: 'input',

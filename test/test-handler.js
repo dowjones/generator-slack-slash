@@ -1,5 +1,4 @@
 /*global describe, before, it */
-'use strict';
 
 var path = require('path');
 var assert = require('yeoman-generator').assert;
@@ -31,14 +30,16 @@ function checkCreatedFiles() {
 describe('slack-slash:handler', function () {
   before(function (done) {
     helpers.run(path.join(__dirname, '../generators/handler'))
-      .withOptions({ skipInstall: true })
+      .withOptions({
+        skipInstall: true
+      })
       .withPrompts({
         command: 'cmd',
         handlerDescription: 'Test handler.'
       })
       .on('end', done);
   });
-  
+
   checkCreatedFiles();
 
   it('updates index.js with correct data', function () {
@@ -71,7 +72,7 @@ describe('slack-slash:handler', function () {
       ['README.md', '![Slack Response](slack-slash-cmd-response.png)'],
       ['README.md', '3. Run `npm install slack-slash-cmd --save`'],
       ['README.md', 'In order to use slack-slash-cmd as part of [slack-slash][ss],'],
-      ['README.md', /\n\s*"command"\s*:\s*"cmd",\n\s*"pkg"\s*:\s*"slack-slash-cmd",\n\s*"tokenVar"\s*:\s*"slack_slash_cmd_token",\n/],
+      ['README.md', /\n\s*"command"\s*:\s*"cmd",\n\s*"pkg"\s*:\s*"slack-slash-cmd",\n\s*"tokenVar"\s*:\s*"slack_slash_cmd_token",\n/]
     ]);
   });
 
