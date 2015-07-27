@@ -11,7 +11,9 @@
     "url": "https://github.com/adamgruber"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "sh -c 'npm run lint && npm run test-cover && istanbul check-coverage --statements 100 --functions 100 --branches 100 --lines 100'",
+    "lint": "eslint generators/**/index.js test/",
+    "test-cover": "istanbul cover _mocha"
   },
   "files": [
     "generators"
