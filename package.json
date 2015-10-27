@@ -4,7 +4,7 @@
   "description": "Yeoman generator for slack-slash app",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "adamgruber/generator-slack-slash",
+  "repository": "https://github.com/dowjones/generator-slack-slash",
   "author": {
     "name": "Adam Gruber",
     "email": "",
