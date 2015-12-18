@@ -88,7 +88,7 @@ module.exports = yeoman.generators.Base.extend({
       var self = this;
       var basePath = path.join(__dirname, '..', '..');
       var ssPath = path.join(basePath, 'node_modules', 'slack-slash');
-      var ssFiles = ['.gitignore', 'LICENSE.md', 'README.md', 'server.js'];
+      var ssFiles = ['.npmignore', 'LICENSE.md', 'README.md', 'server.js'];
 
       _.each(ssFiles, function (file) {
         self.fs.copy(
