@@ -94,6 +94,13 @@ module.exports = yeoman.generators.Base.extend({
       var basePath = path.join(__dirname, '..', '..');
       var ssPath = path.join(basePath, 'node_modules', 'slack-slash');
       var ssFiles = ['.npmignore', 'LICENSE.md', 'README.md', 'server.js'];
+      var ssPackage = require(path.join(ssPath, 'package.json'));
+
+      this.props.pkg = JSON.stringify({
+        scripts: ssPackage.scripts,
+        keywords: ssPackage.keywords,
+        dependencies: ssPackage.scripts
+      }, null, 2).replace(/^\{/, '').replace(/\}$/, '');
 
       _.each(ssFiles, function (file) {
         self.fs.copy(
