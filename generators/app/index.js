@@ -21,14 +21,12 @@ module.exports = yeoman.generators.Base.extend({
       name: 'appName',
       message: 'Name your app:',
       default: 'slack-slash'
-    },
-    {
+    }, {
       type: 'confirm',
       name: 'initialHandlers',
       message: 'Set up inital handlers?',
       default: false
-    },
-    {
+    }, {
       type: 'input',
       name: 'handlers',
       message: 'List handlers to use (comma separated):',
