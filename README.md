@@ -1,4 +1,4 @@
-# generator-slack-slash
+# generator-slack-slash [![Build Status](https://travis-ci.org/dowjones/generator-slack-slash.svg)](https://travis-ci.org/dowjones/generator-slack-slash)
 
 > [Yeoman](http://yeoman.io) generator for [slack-slash](https://github.com/dowjones/slack-slash) app and handler plugins.
 

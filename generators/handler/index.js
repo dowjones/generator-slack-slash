@@ -20,16 +20,14 @@ module.exports = yeoman.generators.Base.extend({
       message: 'What\'s the slash command for your handler? (/:command)',
       validate: helpers.stringNotEmpty,
       filter: helpers.cleanSlashCmd
-    },
-    {
+    }, {
       type: 'input',
       name: 'handlerName',
       message: 'What\s the name of your handler?',
       default: function (answers) {
         return 'slack-slash-' + answers.command;
       }
-    },
-    {
+    }, {
       type: 'input',
       name: 'handlerDescription',
       message: 'Give a short description for your handler:'

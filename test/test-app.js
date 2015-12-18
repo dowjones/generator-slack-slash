@@ -5,7 +5,7 @@ var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 
 var expectedFiles = [
-  '.gitignore',
+  '.npmignore',
   'handlers.json',
   'server.js',
   'LICENSE.md',

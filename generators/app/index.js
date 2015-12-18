@@ -21,14 +21,12 @@ module.exports = yeoman.generators.Base.extend({
       name: 'appName',
       message: 'Name your app:',
       default: 'slack-slash'
-    },
-    {
+    }, {
       type: 'confirm',
       name: 'initialHandlers',
       message: 'Set up inital handlers?',
       default: false
-    },
-    {
+    }, {
       type: 'input',
       name: 'handlers',
       message: 'List handlers to use (comma separated):',
@@ -85,12 +83,17 @@ module.exports = yeoman.generators.Base.extend({
     });
   },
 
+  paths: function () {
+    // Save app into directory with app name
+    this.destinationRoot(this.props.appName + '/');
+  },
+
   writing: {
     app: function () {
       var self = this;
       var basePath = path.join(__dirname, '..', '..');
       var ssPath = path.join(basePath, 'node_modules', 'slack-slash');
-      var ssFiles = ['.gitignore', 'LICENSE.md', 'README.md', 'server.js'];
+      var ssFiles = ['.npmignore', 'LICENSE.md', 'README.md', 'server.js'];
 
       _.each(ssFiles, function (file) {
         self.fs.copy(
