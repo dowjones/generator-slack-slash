@@ -83,6 +83,11 @@ module.exports = yeoman.generators.Base.extend({
     });
   },
 
+  paths: function () {
+    // Save app into directory with app name
+    this.destinationRoot(this.props.appName + '/');
+  },
+
   writing: {
     app: function () {
       var self = this;
