@@ -28,6 +28,8 @@
     "slack-slash": "*"
   },
   "devDependencies": {
+    "eslint": "^1.10.3",
+    "istanbul": "^0.4.1",
     "mocha": "*"
   }
 }
