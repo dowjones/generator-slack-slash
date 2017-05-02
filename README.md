@@ -27,7 +27,7 @@ npm install -g generator-slack-slash
 yo slack-slash
 ```
 
-###Follow the steps
+### Follow the steps
 
 ```
 ? Name your app:
