@@ -21,7 +21,7 @@ npm install -g generator-slack-slash
 
 ## Generating a slack-slash app
 
-###Initiate the app generator:
+### Initiate the app generator:
 
 ```
 yo slack-slash
@@ -41,7 +41,7 @@ Tell Yeoman what to call your app.
 
 Already know what handlers you want to include?
 
-###Optional steps for adding initial handlers:
+### Optional steps for adding initial handlers:
 
 ```
 ? List handlers to use (comma separated):
@@ -63,13 +63,13 @@ Environment variable name for the handler token
 
 ## Generating a slack-slash handler
 
-###Initiate the handler generator:
+### Initiate the handler generator:
 
 ```
 yo slack-slash:handler
 ```
 
-###Follow the steps
+### Follow the steps
 
 ```
 ? What's the slash command for your handler? (/:command)
